@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="with=device-width, initial-scale=1.0" />
+    <title>Form</title>
+</head>
+<body>
+    <center>
+        <h1 class="heading">Maximum Absolute Difference </h1>
+
+        <form name="examform">
+            Enter a number: <input type="text" id="numbers" />
+            <br>
+            <br />
+            Sorted Elements: <input type="text" name="sorted" />
+            <br>
+            <br />
+            Result : <input type="text" name="result">
+            <br>
+            <br />
+
+            <input type="button" value="Submit" onClick="sumValues(numbers)">
+        </form>
+
+        <script type="text/javascript">
+
+            function sumValues(arr) {
+
+                const num = document.getElementById("numbers").value;
+                const separatedNum = num.split(",");
+                const numLength = separatedNum.length;
+                const sortedNum = separatedNum.sort();
+
+                if (separatedNum.length < 2) {
+                    document.examform.result.value = "0";
+                }
+
+                var min = sortedNum[0];
+                var max = sortedNum[0];
+
+                for (var i = 1; i < numLength; i++) {
+                    min = Math.min(min, sortedNum[i]);
+                    max = Math.max(max, sortedNum[i]);
+                }
+
+                var result = max - min;
+
+                document.examform.result.value = result;
+                document.examform.sorted.value = sortedNum;
+
+                return false;
+
+            }
+        </script>
+    </center>
+</body>
+</html>
