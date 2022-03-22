@@ -3,34 +3,42 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="with=device-width, initial-scale=1.0" />
-    <title>Maximum abosolute difference - Phitopolis</title>
+    <title>Phitopolis</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <center>
+    <div class="center">
         <h1 class="heading">Maximum Absolute Difference </h1>
 
         <form name="examform">
-            Enter a number: <input type="text" id="numbers" />
-            <br>
-            <br />
-            Sorted Elements: <input type="text" name="sorted" />
-            <br>
-            <br />
-            Result : <input type="text" name="result">
-            <br>
-            <br />
-
-            <input type="button" value="Submit" onClick="sumValues(numbers)">
-        </form>
+            <div class="text_field">
+                <input type="text" id="numbers" required>
+                <label>Enter a number</label>
+                <span></span>
+            </div>
+            <div class="text_field">
+                <input type="text" name="sorted" required>
+                <span></span>
+                <label>Sorted Elements</label>
+            </div>
+            <div class="text_field">
+                <input type="text" name="result" required>
+                <span></span>
+                <label>Result</label>
+            </div>
+                <input type="button" value="Submit" onClick="sumValues()">
+</form>
+    </div>
 
         <script type="text/javascript">
 
-            function sumValues(arr) {
+            function sumValues() {
 
                 const num = document.getElementById("numbers").value;
                 const separatedNum = num.split(",");
                 const numLength = separatedNum.length;
                 const sortedNum = separatedNum.sort();
+                var result = 0;
 
                 if (separatedNum.length < 2) {
                     document.examform.result.value = "0";
@@ -42,17 +50,19 @@
                 for (var i = 1; i < numLength; i++) {
                     min = Math.min(min, sortedNum[i]);
                     max = Math.max(max, sortedNum[i]);
+                    if (sortedNum[i] >= -1000 && sortedNum[i] <= 1000) {
+                        result = max - min;
+                        document.examform.result.value = result;
+                        document.examform.sorted.value = sortedNum;
+                    } else {
+                        alert("Numbers should be in range of -1000 and 1000")
+                    }
+
                 }
-
-                var result = max - min;
-
-                document.examform.result.value = result;
-                document.examform.sorted.value = sortedNum;
-
                 return false;
-
             }
+
+
         </script>
-    </center>
 </body>
 </html>
