@@ -8,47 +8,51 @@
 </head>
 <body>
     <div class="center">
-        <h1 class="heading">Maximum Absolute Difference - Successive </h1>
+        <h1 class="heading">Maximum Absolute Difference - In an array </h1>
 
         <form name="examform">
             <div class="text_field">
-                <input type="text" id="numbers" required>
+                <input type="text" id="numbersArray" required>
                 <label>Enter a number</label>
                 <span></span>
             </div>
             <div class="text_field">
-                <input type="text" name="sorted" required>
+                <input type="text" name="sortedArray" required>
                 <span></span>
                 <label>Sorted Elements</label>
             </div>
             <div class="text_field">
-                <input type="text" name="result" required>
+                <input type="text" name="resultArray" required>
                 <span></span>
                 <label>Result</label>
             </div>
-            <input type="button" value="Submit" onClick="sumValues()">
-            <input type="button" value="In an array" onClick="location.href='index3.html'">
+            <input type="button" value="Submit" onClick="inArray()">
+            <input type="button" value="Successive" onClick="location.href='index.html'">
         </form>
     </div>
 
     <script type="text/javascript">
 
-        function sumValues() {
+        function inArray() {
 
-            const num = document.getElementById("numbers").value;
+            const num = document.getElementById("numbersArray").value;
             const separatedNum = num.split(",");
             const numLength = separatedNum.length;
             const sortedNum = separatedNum.sort();
             var result = 0;
 
+            if (separatedNum.length < 2) {
+                document.examform.result.value = "0";
+            }
+
+            var min = sortedNum[0];
+            var max = sortedNum[0];
 
             for (var i = 0; i < numLength; i++) {
-
-
                 if (sortedNum[i] >= -1000 && sortedNum[i] <= 1000) {
-                    for (var j = i; j < numLength; j++) {
-                        result = Math.max(result, calDiff(i, j, sortedNum))                       
-                    }
+                    min = Math.min(min, sortedNum[i]);
+                    max = Math.max(max, sortedNum[i]);
+                    result = max - min;
                 }
                 if (sortedNum[i] <= -1000 || sortedNum[i] >= 1000) {
                     alert("Numbers should be in range of -1000 and 1000");
@@ -57,28 +61,12 @@
                     break;
                 }
 
-                document.examform.result.value = result;
-                document.examform.sorted.value = sortedNum;
-
-                
+                document.examform.resultArray.value = result;
+                document.examform.sortedArray.value = sortedNum;
             }
-
-            result = result - 1;
-
-            if (separatedNum.length < 2 || separatedNum.length == 0) {
-                result = 0;
-            }
-
-
 
         return false;
         }
-
-        function calDiff(first, second, sortedNumArray) {
-            return Math.abs(sortedNumArray[first] - sortedNumArray[second]) + Math.abs(first - second);
-        }
-
-
 
     </script>
 </body>
