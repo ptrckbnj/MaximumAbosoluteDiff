@@ -57,17 +57,19 @@
                     break;
                 }
 
-                document.examform.result.value = result;
-                document.examform.sorted.value = sortedNum;
-
                 
             }
 
-            result = result - 1;
+            if (result !== 0) {
+                result = result - 1;
+            }
 
             if (separatedNum.length < 2 || separatedNum.length == 0) {
                 result = 0;
             }
+
+            document.examform.result.value = result;
+            document.examform.sorted.value = sortedNum;
 
 
 
