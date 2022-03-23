@@ -38,7 +38,9 @@
             const num = document.getElementById("numbers").value;
             const separatedNum = num.split(",");
             const numLength = separatedNum.length;
-            const sortedNum = separatedNum.sort();
+            const sortedNum = separatedNum.sort(function (a, b) {
+                return a - b;
+            });
             var result = 0;
 
 
